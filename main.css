@@ -1,64 +1,75 @@
-body {
-    margin: 0;
+
+
+*{
     padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #F2C14E;
+    --winning-blocks: #2d414b;
+
+} 
+
+body {
+    color: var(--orange);
+    font-family: sans-serif, cursive;
+}
+
+h1 {
+    font-size: 54px;
+    text-transform: uppercase;
+}
+
+.container {
+    padding:40px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height:100vh;
     flex-direction: column;
+    background-color:cadetblue
 }
 
-#gameboard {
+#gameboard{
     width: 300px;
-    height: 300px;
-    background-color: black;
     display: flex;
     flex-wrap: wrap;
-    border: solid 1px black
+    margin-top:40px;
 }
 
-.square {
+.box {
+    height:100px;
     width: 100px;
-    height: 100px;
-    background-color: white;
-    border: solid 2px black;
-    box-sizing: border-box;
+    display: flex;
     align-items: center;
-}
-.circle {
-    height: 90px;
-    width: 90px;
-    border-radius: 50%;
-    border: 15px solid blue;
-    box-sizing: border-box;
-  
+    justify-content: center;
+    color: var(--orange); 
+    font-size:120px;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
 }
 
-.cross {
-    height: 90px;
-    width: 90px;
-    position: relative;
-    /* rotate cross */
-    transform:rotate(45deg);
-
+.box:nth-child(3n) {
+    border-right: none;
 }
-/* making a cross*/
-.cross:before, .cross:after {
-    content: "";
-    position: absolute;
-    background-color: red;
+.box:nth-child(6)~.box {
+    border-bottom: none;;
 }
 
-.cross:before{
-    left:50%;
-    width:30%;
-    margin-left: -15%;
-    height: 100%;
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--orange);
+    color: #333;
+    border-color:var(--orange);
+    font-size: 18px;
+    transition: 200ms transform;
+    font-weight: 600;
 }
 
-.cross:after {
-    top: 50%;
-    height: 30%;
-    margin-top: -15%;
-    width: 100%;
+button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
 }

@@ -5,21 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAMEPROJECT</title>
-    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./main.css">
 </head>
 
 <body>
-    <h1 id="Header">TIC TAC TOE</h1>
-    <!--making the gameboard-->
-    <div id="gameboard">
+    <div class="container">
+        <h1 id ="playerText">TIC TAC TOE</h1>
+        <!--making the gameboard-->
+        <button id="restartBtn">Restart</button>
+        <div id="gameboard">
+            <!--starts 0 because it's an array-->
+            <div id="gameboard">
+                <div class="box" id="0"></div>
+                <div class="box" id="1"></div>
+                <div class="box" id="2"></div>
+                <div class="box" id="3"></div>
+                <div class="box" id="4"></div>
+                <div class="box" id="5"></div>
+                <div class="box" id="6"></div>
+                <div class="box" id="7"></div>
+                <div class="box" id="8"></div>
+            </div>
+        </div>
     </div>
-<p id="info"></p>
-
-
-
-
-
-
 
     <script src="./index.js"></script>
 
