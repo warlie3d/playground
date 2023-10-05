@@ -19,6 +19,27 @@ const startGame = () => {
   //event listener for box clicks
   boxes.forEach((box) => box.addEventListener("click", boxClicked));
 };
+//function to check if it's a tie
+function isTie() {
+  return spaces.every((space) => space !== null);
+}
+
+//function to handleGameResult()
+function handleGameResult() {
+  if (playerHasWon()) {
+    const winning_blocks = playerHasWon();
+    playerText.innerHTML = `${currentPlayer} has won!`;
+    winning_blocks.map(
+      (box) => (boxes[box].style.backgroundColor = winnerIndicator)
+    );
+
+    //Remove event listener so the player cannot click anymore boxes after winning
+    boxes.forEach((box) => box.removeEventListener("click", boxClicked));
+    //call tie
+  } else if (isTie()) {
+    playerText.innerHTML = "It's a Tie!";
+  }
+}
 //function for box clicks
 function boxClicked(e) {
   const id = e.target.id;
@@ -28,19 +49,14 @@ function boxClicked(e) {
     spaces[id] = currentPlayer;
     //change the value to currentPlayer
     e.target.innerText = currentPlayer;
-    //if anyone wins
-    if (playerHasWon() !== false) {
-      playerText.innerHTML = `${currentPlayer} has won!`;
-      let winning_blocks = playerHasWon();
 
-      winning_blocks.map(
-        (box) => (boxes[box].style.backgroundColor = winnerIndicator)
-      );
-      return;
+    //Check for game result (tie or win)
+    handleGameResult();
+
+    //if no one has won, switch to the next
+    if (!playerHasWon()) {
+      currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT;
     }
-
-    //if statement to change player
-    currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT;
   }
 }
 const winningCombos = [
@@ -74,11 +90,15 @@ function restart() {
   //resetting button to clear text
   boxes.forEach((box) => {
     box.innerText = "";
+    //resetting box shadow style when
     box.style.backgroundColor = "";
   });
 
   playerText.innerHTML = "TIC TAC TOE";
   currentPlayer = X_TEXT;
+
+  //call startgame again to return event listener that was removed
+  startGame();
 }
 
 startGame();
