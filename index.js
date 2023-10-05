@@ -1,8 +1,14 @@
+const winGifPath = "assets/winner.gif";
+const tieGifPath = "assets/shocked.gif";
+//fuinct
+function displayGif(gifpath, containerId) {
+  const gifContainer = document.getElementById(containerId);
+  gifContainer.innerHTML = `<img src ="${gifpath}" alt="GIF">`;
+}
 let playerText = document.getElementById("playerText");
 let restartBtn = document.getElementById("restartBtn");
 //get all box elements using array.from, instead of being and htmlcollection, it will  be an array with 9 elements
 let boxes = Array.from(document.getElementsByClassName("box"));
-
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue(
   "--winning-blocks"
 );
@@ -32,12 +38,16 @@ function handleGameResult() {
     winning_blocks.map(
       (box) => (boxes[box].style.backgroundColor = winnerIndicator)
     );
+    //display winning GIF
+    displayGif(winGifPath, "winGifContainer");
 
     //Remove event listener so the player cannot click anymore boxes after winning
     boxes.forEach((box) => box.removeEventListener("click", boxClicked));
     //call tie
   } else if (isTie()) {
     playerText.innerHTML = "It's a Tie!";
+    //Display Tie GIF
+    displayGif(tieGifPath, "tieGifContainer");
   }
 }
 //function for box clicks
@@ -85,6 +95,17 @@ function playerHasWon() {
 //reset game with reset button
 restartBtn.addEventListener("click", restart);
 //function to clear out spaces array and make it null again
+
+//function to reset gif containers
+function resetGifContainer() {
+  const winGifContainer = document.getElementById("winGifContainer");
+  const tieGifContainer = document.getElementById("tieGifContainer");
+
+  // clear containers
+  winGifContainer.innerHTML = "";
+  tieGifContainer.innerHTML = "";
+}
+
 function restart() {
   spaces.fill(null);
   //resetting button to clear text
@@ -96,6 +117,9 @@ function restart() {
 
   playerText.innerHTML = "TIC TAC TOE";
   currentPlayer = X_TEXT;
+
+  //reset GifContainers
+  resetGifContainer();
 
   //call startgame again to return event listener that was removed
   startGame();
