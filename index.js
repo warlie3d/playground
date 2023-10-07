@@ -15,6 +15,7 @@ let boxes = Array.from(document.getElementsByClassName("box"));
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue(
   "--winning-blocks"
 );
+
 //creating X and 0
 const O_TEXT = "O";
 const X_TEXT = "X";
