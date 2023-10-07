@@ -1,14 +1,17 @@
+//code for the gif
 const winGifPath = "assets/winner.gif";
 const tieGifPath = "assets/shocked.gif";
-//fuinct
+//function to display GIF
 function displayGif(gifpath, containerId) {
   const gifContainer = document.getElementById(containerId);
   gifContainer.innerHTML = `<img src ="${gifpath}" alt="GIF">`;
 }
+
 let playerText = document.getElementById("playerText");
 let restartBtn = document.getElementById("restartBtn");
 //get all box elements using array.from, instead of being and htmlcollection, it will  be an array with 9 elements
 let boxes = Array.from(document.getElementsByClassName("box"));
+//winner indicator to highlight boxes with winning combination
 let winnerIndicator = getComputedStyle(document.body).getPropertyValue(
   "--winning-blocks"
 );
@@ -45,7 +48,7 @@ function handleGameResult() {
     boxes.forEach((box) => box.removeEventListener("click", boxClicked));
     //call tie
   } else if (isTie()) {
-    playerText.innerHTML = "It's a Tie!";
+    playerText.innerHTML = "DRAW GAME!";
     //Display Tie GIF
     displayGif(tieGifPath, "tieGifContainer");
   }
@@ -107,6 +110,7 @@ function resetGifContainer() {
 }
 
 function restart() {
+  //after restarting , make the boxes null again
   spaces.fill(null);
   //resetting button to clear text
   boxes.forEach((box) => {
