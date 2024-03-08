@@ -1,0 +1,15 @@
+@use '../variables';
+
+@mixin containerStyles {
+    padding: 40px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: cadetblue;
+}
+
+.container {
+    @include containerStyles;
+}

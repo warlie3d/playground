@@ -1,0 +1,51 @@
+@use './variables';
+@use './mixins';
+@use 'partials/button';
+@use 'partials/container';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #f0c330;
+    --winning-blocks: #2d414b;
+}
+
+body {
+    color: var(--orange);
+    font-family: variables.$font-family;
+
+    h1 {
+        font-size: 54px;
+        text-transform: uppercase;
+    }
+}
+
+#gameboard {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+
+    .box {
+        @include mixins.boxStyles;
+    }
+
+}
+
+// 1. SCSS Flow Control Directive
+@if (5 > 3) {
+
+    body {
+        background-color: lightgray;
+    }
+}
+
+@else {
+    body {
+        background-color: white;
+    }
+}
